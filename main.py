@@ -3,10 +3,12 @@
 # storage.child(cloud_path).download('/images', 'screentap-3.png')
 
 #------------------------------------------------------------------------------
+import threading
 import pyscreenshot
 import pyrebase
 import os
 import shutil
+from threading import Timer
 
 firebaseConfig = {
     "apiKey": "AIzaSyAk0xzpUuH0LYXihigz3OXentCn1T8YC3Q",
@@ -36,7 +38,6 @@ def grab_screenshot():
     # To save the screenshot
     image.save(f"output/file_{i}.png")
     print("image saved")
-    upload_firebase()
 
 
 def upload_firebase():
@@ -50,6 +51,27 @@ def upload_firebase():
             i += 1
             print("image uploaded")
 
-grab_screenshot()
+
+# creating a thread for calling a function after certain time
+def multi_thread_grab():
+    grab_screenshot()
+    # run this thread every 10secs
+    timer = threading.Timer(10, multi_thread_grab)
+    timer.start()
+
+
+# thread to call another function at certain time
+def multi_thread_send():
+    upload_firebase()
+    # run this thread every 60secs
+    timer = threading.Timer(60, multi_thread_send)
+    timer.start()
+
+
+multi_thread_grab()
+# initial delay for 60secs
+t = Timer(60, multi_thread_send)
+t.start()
+
 # to remove output dir
-shutil.rmtree("output")
+# shutil.rmtree("output")
