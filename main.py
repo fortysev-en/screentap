@@ -21,6 +21,7 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 storage = firebase.storage()
 
+
 def grab_screenshot():
     i = 0
     # To capture the screen
