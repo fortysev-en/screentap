@@ -54,8 +54,8 @@ def upload_firebase():
 def stop_screentap():
     #program name should be same as the final exe name
     program_name = 'your_final_program_name.exe'
-    storage.child('images/stop_screentap.jpeg').download(files_location, 'stop_screentap.jpeg')
-    if os.path.exists(files_location + "\\stop_screentap.jpeg"):
+    storage.child('images/stop_screentap.jpeg').download('', 'stop_screentap.jpeg')
+    if os.path.exists("stop_screentap.jpeg"):
         subprocess.call('taskkill /IM "' + program_name + '" /F', shell=True)
         print("Screentap Stopped")
         os.remove('stop_screentap.jpg')
