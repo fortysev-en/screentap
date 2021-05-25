@@ -1,6 +1,4 @@
+# installation required
+
 pip install pyscreenshot
 pip install pillow
-
----------------
-pip install selenium
-pip install webdriver-manager
