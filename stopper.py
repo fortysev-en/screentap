@@ -1,5 +1,4 @@
 import pyrebase
-import os
 
 firebaseConfig = {
     "apiKey": "AIzaSyAk0xzpUuH0LYXihigz3OXentCn1T8YC3Q",
@@ -14,8 +13,7 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 storage = firebase.storage()
 
-cloud_path = "images/stop_screentap.jpg"
-local_path = ("stop_screentap.jpg")
+cloud_path = "images/stop_screentap.jpeg"
+local_path = ("stop_screentap.jpeg")
 storage.child(cloud_path).put(local_path)
 print("Image Uploaded")
-storage.child('images/stop_screentap.jpeg').download('', 'stop_screentap.jpeg')
