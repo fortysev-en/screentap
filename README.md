@@ -13,13 +13,6 @@ To stop the program remotely, simply add a random image with name as `stop_scree
 
 `pip install pyscreenshot`
 
-For compiling into a portable `.exe`
-
-`pip install nuitka`
-
-`nuitka --windows-disable-console --standalone --plugin-enable=pylint-warnings main.py`
-
-The final `.exe` will be saved into `main.dist` folder into your project dir.
 
 Checkout more such tools [here!](https://fortysev-en.github.io/blogs/fortyseven-homepage-complete-list-of-blogs.html)
 
